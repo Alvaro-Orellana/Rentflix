@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rentflix.Data;
 
 namespace Rentflix.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210223024432_AgregoGeneros")]
+    partial class AgregoGeneros
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -212,33 +214,6 @@ namespace Rentflix.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Rentflix.Models.Cliente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("EstaSubscrito")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime?>("FechaNacimiento")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("TEXT");
-
-                    b.Property<byte>("TipoMembresiaId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TipoMembresiaId");
-
-                    b.ToTable("Cliente");
-                });
-
             modelBuilder.Entity("Rentflix.Models.Genero", b =>
                 {
                     b.Property<byte>("Id")
@@ -279,28 +254,6 @@ namespace Rentflix.Data.Migrations
                     b.HasIndex("GeneroId");
 
                     b.ToTable("Pelicula");
-                });
-
-            modelBuilder.Entity("Rentflix.Models.TipoMembresia", b =>
-                {
-                    b.Property<byte>("Id")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<short>("CostoRegistro")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<byte>("Descuento")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<byte>("DuracionEnMeses")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Nombre")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TipoMembresia");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -352,17 +305,6 @@ namespace Rentflix.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Rentflix.Models.Cliente", b =>
-                {
-                    b.HasOne("Rentflix.Models.TipoMembresia", "TipoMembresia")
-                        .WithMany()
-                        .HasForeignKey("TipoMembresiaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TipoMembresia");
                 });
 
             modelBuilder.Entity("Rentflix.Models.Pelicula", b =>

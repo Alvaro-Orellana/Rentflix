@@ -15,11 +15,13 @@ namespace Rentflix.Models
         [StringLength(255)]
         public String Nombre { get; set; }
 
+        [Display(Name = "Fecha de estreno")]
         [Required(ErrorMessage = "El campo Fecha de estreno es requerido")]
         public DateTime FechaEstreno { get; set; }
 
+        [Display(Name = "Cantidad en stock")]
         [Required(ErrorMessage = "Debe agregar el numero de peliculas en stock")]
-        //[MinStockPermitido]
+        [MinStockPermitido]
         public ushort CantidadEnStock { get; set; }
 
         public virtual Genero Genero { get; set; }

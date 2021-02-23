@@ -15,6 +15,7 @@ namespace Rentflix.Data
         }
 
         public DbSet<Pelicula> Pelicula { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
 
     }
 }
