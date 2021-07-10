@@ -23,12 +23,30 @@ namespace Rentflix.Models
 
 
             // Verificar que el cliente es mayor de edad para completar la validacion
-            byte EDAD_MINIMA_PARA_MEMBRESIA = 18;
-            var edadCliente = DateTime.Today.Year - cliente.FechaNacimiento.Value.Year;
+            const byte EDAD_MINIMA_PARA_MEMBRESIA = 18;
 
-            return (edadCliente >= EDAD_MINIMA_PARA_MEMBRESIA)
-                ? ValidationResult.Success
-                : new ValidationResult("El cliente debe tener al menos 18 años para contratar una mebresía");
+            var edadCliente = DateTime.Today.Year - cliente.FechaNacimiento.Value.Year;
+            var meseDesdeCumpleAños = DateTime.Today.Month - cliente.FechaNacimiento.Value.Month;
+            var diasDesdeCumpleaños = DateTime.Today.Day - cliente.FechaNacimiento.Value.Day;
+
+
+            if(edadCliente > EDAD_MINIMA_PARA_MEMBRESIA)
+            {
+                return ValidationResult.Success;
+
+            } else if (edadCliente == EDAD_MINIMA_PARA_MEMBRESIA && meseDesdeCumpleAños >= 0 && diasDesdeCumpleaños >= 0)
+            {
+
+                return ValidationResult.Success;
+
+            } else
+            {
+                return new ValidationResult("El cliente debe tener al menos 18 años para contratar una mebresía");
+            }
+
+            //return (edadCliente >= EDAD_MINIMA_PARA_MEMBRESIA)
+            //    ? ValidationResult.Success
+            //    : new ValidationResult("El cliente debe tener al menos 18 años para contratar una mebresía");
         }
     }
 }

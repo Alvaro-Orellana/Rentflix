@@ -1,15 +1,11 @@
 @model IEnumerable<Rentflix.Models.Cliente>
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index"; }
 
-<h1>Index</h1>
+<h1>Clientes</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+
+<table class="table" id="myTable">
     <thead>
         <tr>
             <th>
@@ -28,26 +24,38 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstaSubscrito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoMembresia.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaNacimiento)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EstaSubscrito)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TipoMembresia.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaNacimiento)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+    </td>
+</tr>}
     </tbody>
 </table>
+
+<p>
+    <a asp-action="Create">Crear nuevo cliente</a>
+</p>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}

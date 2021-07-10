@@ -14,10 +14,10 @@ namespace Rentflix.Models
 
        MEMBRESIA        |  COSTO POR REGISTRO  |   DESCUENTO  
 
-      (1) Al contado            Gratis                0%
-      (2) Mensual                100                  10%
-      (3) Cuatrimestral          300                  15%
-      (4) Anual                  900                  20%
+      1 Al contado            Gratis                0%
+      2 Mensual                100                  10%
+      3 Cuatrimestral          300                  15%
+      4 Anual                  900                  20%
 
        */
 
