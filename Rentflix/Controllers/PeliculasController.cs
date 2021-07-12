@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,8 +23,32 @@ namespace Rentflix.Controllers
         // GET: Peliculas
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Pelicula.Include(p => p.Genero);
-            return View(await applicationDbContext.ToListAsync());
+
+
+            // 1 AdminVerificator confirma si el usuario es admin o no 
+            var adminVerificator = new AdminVerificator();
+
+            var peliculas = _context.Pelicula.Include(p => p.Genero);
+
+            if (adminVerificator.isCurrentUserAdmin())
+            {
+                // 2 Si el usuario es admin mostrar esta view
+                return View(await peliculas.ToListAsync());
+            } else
+            {
+                // 3 Si no es admin mostrar view para usuario comun
+                return View("Index_Commun_User", await peliculas.ToListAsync());
+            }
+          
+
+
+
+            // Si no lo es mostrar pagina personalizada para usuario
+
+
+    
+
+
         }
 
         // GET: Peliculas/Details/5

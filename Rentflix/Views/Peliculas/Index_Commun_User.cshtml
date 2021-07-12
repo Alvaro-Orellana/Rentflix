@@ -1,0 +1,55 @@
+@model IEnumerable<Rentflix.Models.Pelicula>
+
+@{ ViewData["Title"] = "Index"; }
+
+<h1>Peliculas</h1>
+<h1>Fucnionaaaaa!</h1>
+
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEstreno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genero)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaEstreno)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CantidadEnStock)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Genero.Nombre)
+    </td>
+    <td>
+        <h3> Aca iria la imagen!!!!!</h3>
+    </td>
+</tr>}
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create">Agregar nueva pelicula</a>
+</p>
+
+@section Scripts{
+    <script>$(document).ready(function () {
+            $('#myTable').DataTable();
+        });</script>
+}

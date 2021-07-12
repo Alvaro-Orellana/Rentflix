@@ -12,6 +12,7 @@ namespace Rentflix.Models
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var cliente = (Cliente)validationContext.ObjectInstance;
+            
 
             // Si la membresia elegida es pago al contado no se necesita validacion adicional
             if (cliente.TipoMembresiaId == TipoMembresia.PagoAlContado)
