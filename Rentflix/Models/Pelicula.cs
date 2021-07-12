@@ -27,6 +27,8 @@ namespace Rentflix.Models
         public virtual Genero Genero { get; set; }
 
         public byte GeneroId { get; set; }
+
+        public string ImageURL { get; set; }
     }
 
   

@@ -2,9 +2,18 @@
 
 @{ ViewData["Title"] = "Index"; }
 
-<h1>Peliculas</h1>
-<h1>Fucnionaaaaa!</h1>
+<style>
+    img {
+        border-radius: 50%;
+        width: 220px;
+        height: 220px;
+        object-fit: contain;
+    }
+</style>
 
+
+
+<h1>Peliculas</h1>
 
 <table class="table" id="myTable">
     <thead>
@@ -26,27 +35,24 @@
         {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.Nombre)
+        <h3>@Html.DisplayFor(modelItem => item.Nombre)</h3>
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.FechaEstreno)
+        <img src="@Url.Content(item.ImageURL)" alt="Sin imagen" />
+
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.CantidadEnStock)
+        <h3>@{item.FechaEstreno.ToShortDateString();}</h3>
     </td>
+
     <td>
-        @Html.DisplayFor(modelItem => item.Genero.Nombre)
+        <h3> @Html.DisplayFor(modelItem => item.Genero.Nombre)</h3>
     </td>
-    <td>
-        <h3> Aca iria la imagen!!!!!</h3>
-    </td>
+
 </tr>}
     </tbody>
 </table>
 
-<p>
-    <a asp-action="Create">Agregar nueva pelicula</a>
-</p>
 
 @section Scripts{
     <script>$(document).ready(function () {

@@ -32,11 +32,11 @@ namespace Rentflix.Controllers
 
             if (adminVerificator.isCurrentUserAdmin())
             {
-                // 2 Si el usuario es admin mostrar esta view
+                // 2 El usuario es admin
                 return View(await peliculas.ToListAsync());
             } else
             {
-                // 3 Si no es admin mostrar view para usuario comun
+                // 3 No es admin mostrar view para usuario comun
                 return View("Index_Commun_User", await peliculas.ToListAsync());
             }
           
@@ -82,7 +82,7 @@ namespace Rentflix.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,FechaEstreno,CantidadEnStock,GeneroId")] Pelicula pelicula)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,FechaEstreno,CantidadEnStock,GeneroId,ImageURL")] Pelicula pelicula)
         {
             if (ModelState.IsValid)
             {
@@ -116,7 +116,7 @@ namespace Rentflix.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,FechaEstreno,CantidadEnStock,GeneroId")] Pelicula pelicula)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,FechaEstreno,CantidadEnStock,GeneroId,ImageURL")] Pelicula pelicula)
         {
             if (id != pelicula.Id)
             {
