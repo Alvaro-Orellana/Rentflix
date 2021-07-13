@@ -1,0 +1,50 @@
+@model Rentflix.Models.Pelicula
+
+@{ ViewData["Title"] = "Details"; }
+
+<h1>Detalle Pelicula</h1>
+
+<div>
+    <h4>Pelicula</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaEstreno)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaEstreno)
+        </dd>
+        <dt class="col-sm-2">
+            Precio
+        </dt>
+        <dd class="col-sm-10">
+            $250
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Genero)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Genero.Nombre)
+        </dd>
+    </dl>
+</div>
+
+<img src="@Url.Content(Model.ImageURL)" alt="Sin imagen"  width="250" height="340" />
+
+
+<div>
+    <a asp-action="Purchase_Finished">
+        Comprar
+    </a>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>

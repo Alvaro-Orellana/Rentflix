@@ -4,58 +4,73 @@
 
 <style>
     img {
-        border-radius: 50%;
+        border-radius: 100%;
         width: 220px;
-        height: 220px;
+        height: 210px;
         object-fit: contain;
     }
+
+    body, table, tr, td, th {
+        background-color: #000000;
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+    }
+
 </style>
 
 
+<div >
 
-<h1>Peliculas</h1>
+    <h1>Nuestras Peliculas</h1>
 
-<table class="table" id="myTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaEstreno)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genero)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-<tr>
-    <td>
-        <h3>@Html.DisplayFor(modelItem => item.Nombre)</h3>
-    </td>
-    <td>
-        <img src="@Url.Content(item.ImageURL)" alt="Sin imagen" />
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                   Portada
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Genero)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <h3>@Html.DisplayFor(modelItem => item.Nombre)</h3>
+                    </td>
+                    <td>
 
-    </td>
-    <td>
-        <h3>@{item.FechaEstreno.ToShortDateString();}</h3>
-    </td>
+                        <a asp-action="Movies_Details" asp-route-id="@item.Id">
+                            <img src="@Url.Content(item.ImageURL)" alt="Sin imagen" />
+                        </a>
 
-    <td>
-        <h3> @Html.DisplayFor(modelItem => item.Genero.Nombre)</h3>
-    </td>
+                    </td>
+                    <td>
+                        <h3>@{item.FechaEstreno.ToShortDateString();}</h3>
+                    </td>
 
-</tr>}
-    </tbody>
-</table>
+                    <td>
+                        <h3> @Html.DisplayFor(modelItem => item.Genero.Nombre)</h3>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
 
 
 @section Scripts{
     <script>$(document).ready(function () {
             $('#myTable').DataTable();
-        });</script>
+    });
+    </script>
 }

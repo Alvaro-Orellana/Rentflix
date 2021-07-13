@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Rentflix.Data;
 using Rentflix.Models;
+using System.Net.Mail;
+
 
 namespace Rentflix.Controllers
 {
@@ -41,13 +43,7 @@ namespace Rentflix.Controllers
             }
           
 
-
-
             // Si no lo es mostrar pagina personalizada para usuario
-
-
-    
-
 
         }
 
@@ -69,6 +65,60 @@ namespace Rentflix.Controllers
 
             return View(pelicula);
         }
+
+        public async Task<IActionResult> Purchase_Finished()
+        {
+            return View();
+        }
+
+
+
+
+
+        // GET: Peliculas/Details/5
+        public async Task<IActionResult> Movies_Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var pelicula = await _context.Pelicula
+                .Include(p => p.Genero)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (pelicula == null)
+            {
+                return NotFound();
+            }
+
+            return View(pelicula);
+        }
+
+
+
+        public static void Email(string htmlString)
+        {
+            try
+            {
+                //MailMessage message = new MailMessage();
+                //SmtpClient smtp = new SmtpClient();
+                //message.From = new MailAddress("FromMailAddress");
+                //message.To.Add(new MailAddress("ToMailAddress"));
+                //message.Subject = "Test";
+                //message.IsBodyHtml = true; //to make message body as html  
+                //message.Body = htmlString;
+                //smtp.Port = 587;
+                //smtp.Host = "smtp.gmail.com"; //for gmail host  
+                //smtp.EnableSsl = true;
+                //smtp.UseDefaultCredentials = false;
+                //smtp.Credentials = new NetworkCredential("FromMailAddress", "password");
+                //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                //smtp.Send(message);
+            }
+            catch (Exception) {
+            }
+        }
+
 
         // GET: Peliculas/Create
         public IActionResult Create()

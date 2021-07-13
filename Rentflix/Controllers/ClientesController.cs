@@ -24,9 +24,23 @@ namespace Rentflix.Controllers
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Cliente.Include(c => c.TipoMembresia);
-            return View(await applicationDbContext.ToListAsync());
+
+            var adminVerificator = new AdminVerificator();
+            if (adminVerificator.isCurrentUserAdmin())
+            {
+                // El usuario es admin
+                var applicationDbContext = _context.Cliente.Include(c => c.TipoMembresia);
+                return View(await applicationDbContext.ToListAsync());
+            }
+            else
+            {
+                // No es administrador mostrar acceso denegado
+                return View("Access_Deneid");
+            }
         }
+          
+
+            
 
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)

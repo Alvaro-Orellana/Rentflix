@@ -7,11 +7,11 @@ namespace Rentflix.Models
     public class AdminVerificator
     {
 
-        // Dummy data. Lista para testear verificacion de admin
-        // En caso real se guarda en app.db o se accede de otra manera?
+        // Dummy data. Para testear verificacion de admin
+        // ¿ En caso real se guarda en app.db o se accede remotamente de otra manera?
         private static IList administatorsEmails = new List<String>()
         {
-            // Solo estos mails pertenecen a administradores
+            // " Mails pertenecientes a administradores "
             "example_admin1@mail.com",
             "example_admin2@mail.com",
             "example_admin3@mail.com",
@@ -29,6 +29,8 @@ namespace Rentflix.Models
 
         public string getCurrentUserEmail()
         {
+            // Consulta por obtencion de correo usuario
+
             //var id = User.Identity.Name;
             //Console.WriteLine("TEST " + id);
             //Console.WriteLine(id);
@@ -51,13 +53,9 @@ namespace Rentflix.Models
         public bool isCurrentUserAdmin()
         {
             var userEmail = getCurrentUserEmail();
-            if(AdminVerificator.administatorsEmails.Contains(userEmail))
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
+            var isCurrentUserAdmin = AdminVerificator.administatorsEmails.Contains(userEmail);
+
+            return isCurrentUserAdmin;
 
         }
 
